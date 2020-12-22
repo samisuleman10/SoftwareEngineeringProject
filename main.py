@@ -5,12 +5,14 @@ class GameBoard:
         self.menu()
 
     def menu(self):
+        print("\nWelcome to the word guessing game\n")
         print("1. Start game\n2. About game\n3. Exit")
         selected_option = input("Enter key:")
         # print(selected_option)
         self.display_selected_option(selected_option)
 
     def difficulty_selection(self):
+        print("\nPlease select the difficulty level\n")
         difficulty_list = ["1", "2", "3"]
         print("1. Easy\n2. Medium\n3. Hard")
         difficulty_level = input("Enter key:")
@@ -33,6 +35,7 @@ class GameBoard:
         exit()
 
     def category_selection(self, difficulty_level):
+        print("\nPlease select the category\n")
         category_list = ["1", "2", "3"]
         print("1. Countries and cities\n2. Books\n3. Animals")
         word_category = input("Enter key:")
@@ -55,8 +58,6 @@ class GameBoard:
         else:
             print("Please enter the correct key")
             self.menu()
-
-
 
 
 
