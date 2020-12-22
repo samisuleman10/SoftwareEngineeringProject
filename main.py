@@ -37,7 +37,7 @@ class GameBoard:
     def category_selection(self, difficulty_level):
         print("\nPlease select the category\n")
         category_list = ["1", "2", "3"]
-        print("1. Countries and cities\n2. Books\n3. Animals")
+        print("1. Countries and Cities\n2. Fruits and Vegetables\n3. Animals")
         word_category = input("Enter key:")
         if word_category not in category_list:
             print("Please enter the correct key")
