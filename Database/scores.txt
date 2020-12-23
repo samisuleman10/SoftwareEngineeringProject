@@ -1,0 +1,8 @@
+shifa 30
+sami 40
+shifa 70
+sami 80
+ahsan 20
+noma 5
+s 30 
+w 30 

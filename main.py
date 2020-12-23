@@ -1,4 +1,5 @@
 import random
+from collections import defaultdict
 
 HANGMAN = [
     '________',
@@ -27,7 +28,7 @@ class GameBoard:
         self.username = input('\nEnter your name: ')
 
     def difficulty_selection(self):
-        print("\nHello "+self.username)
+        print("\nHello " + self.username)
         print("\nPlease select the difficulty level\n")
         difficulty_list = ["1", "2", "3"]
         print("1. Easy\n2. Medium\n3. Hard")
@@ -77,7 +78,6 @@ class GameBoard:
 
 
 class GameEngine:
-
 
     def __init__(self):
         self.failed_attempts = 0
@@ -137,7 +137,6 @@ class GameEngine:
     def is_invalid_letter(self, input_):
         return input_.isdigit() or (input_.isalpha() and len(input_) > 1)
 
-
     def playagain(self):
         print('Do you want to play again? (y/n)')
         if input('> ').lower().startswith('y'):
@@ -157,7 +156,7 @@ class GameEngine:
         else:
             self.total_attempts = 5
 
-        print("\nYou have "+str(self.total_attempts)+" attempts to guess the word")
+        print("\nYou have " + str(self.total_attempts) + " attempts to guess the word")
 
     def get_failed_attempts(self):
 
@@ -174,6 +173,7 @@ class GameEngine:
 
     def play(self):
 
+        score_obj = ScoreManagement()
         self.get_total_attempts()
 
         while self.failed_attempts < len(HANGMAN):
@@ -196,6 +196,8 @@ class GameEngine:
                 if self.game_progress.count('_') == 0:
                     print('\nYay! You win!')
                     print('The word is: {0}'.format(self.secret_word))
+                    ScoreManagement.updating_scores(score_obj, self.username, self.failed_attempts)
+                    ScoreManagement.highest_scores(score_obj)
                     self.playagain()
             else:
                 self.get_failed_attempts()
@@ -203,22 +205,51 @@ class GameEngine:
                 if self.total_attempts != 0:
                     print("\nNow you have " + str(self.total_attempts) + " attempts are left")
 
+        ScoreManagement.updating_scores(score_obj, self.username, self.failed_attempts)
+
         print('\n'.join(HANGMAN[:len(HANGMAN)]))
         print('\n')
         print('The word is: {0}'.format(self.secret_word))
         print("\nSorry,You lost!")
+
+        ScoreManagement.highest_scores(score_obj)
         self.playagain()
-        #score_obj = ScoreManagement()
-        #ScoreManagement.updating_scores(score_obj)
 
 
-#class ScoreManagement:
+class ScoreManagement:
 
- #   def updating_scores(self):
-  #      with open("Database/scores.txt", "w") as text_file:
-   #         print("Shifa : {}".format("100"), file=text_file)
+    def __init__(self):
+        self.total_score = 100
+        self.file_path = "Database/scores.txt"
+
+    def updating_scores(self, user_name, wrong_guess):
+
+        if wrong_guess != 0:
+            self.total_score = self.total_score - (10 * wrong_guess)
+        text_file = open(self.file_path, "a")
+        text_file.write("\n{0}".format(user_name))
+        text_file.write(" {0} ".format(str(self.total_score)))
+        text_file.close()
+
+    def highest_scores(self):
+
+        print("your score is {0}".format(self.total_score))
+        results = defaultdict(int)
+        sorted_dict = {}
+        with open(self.file_path, "r") as file:
+
+            for line in file:
+                name, points = line.split()
+                results[name] += int(points)
+
+        sorted_keys = sorted(results, key=results.get, reverse=True)
+        for w in sorted_keys:
+            sorted_dict[w] = results[w]
+
+        print("\nHighest Scores\n")
+        for name in sorted_dict[0:5]:
+            print(name, sorted_dict[name])
+
 
 if __name__ == '__main__':
     GameBoard()
-
-
