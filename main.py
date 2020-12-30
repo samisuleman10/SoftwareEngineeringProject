@@ -1,5 +1,6 @@
 import random
 from collections import defaultdict
+import re
 
 HANGMAN = [
     '________',
@@ -101,6 +102,7 @@ class GameEngine:
         self.secret_word = ""
         self.word_category = ""
         self.word_management_obj = WordManagement()
+        self.regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
 
     @staticmethod
     def play_game():
@@ -152,7 +154,7 @@ class GameEngine:
         return [i for i, char in enumerate(self.secret_word) if letter == char]
 
     def is_invalid_letter(self, input_):
-        return input_.isdigit() or (input_.isalpha() and len(input_) > 1)
+        return input_.isdigit() or (self.regex.search(input_) is not None) or (input_.isalpha() and len(input_) > 1)
 
     def play_again(self):
         print('Do you want to play again? (y/n)')
