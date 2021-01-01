@@ -1,17 +1,9 @@
 pipeline {
 //None parameter in the agent section means that no global agent will be allocated for the entire Pipeline’s
 //execution and that each stage directive must specify its own agent section.
-    agent none
+    agent any
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    //This image parameter (of the agent section’s docker parameter) downloads the python:2-alpine
-                    //Docker image and runs this image as a separate container. The Python container becomes
-                    //the agent that Jenkins uses to run the Build stage of your Pipeline project.
-                    image 'python:2-alpine'
-                }
-            }
             steps {
                 //This sh step runs the Python command to compile your application and
                 //its calc library into byte code files, which are placed into the sources workspace directory
@@ -22,14 +14,6 @@ pipeline {
             }
         }
         stage('Test') {
-            agent {
-                docker {
-                    //This image parameter downloads the qnib:pytest Docker image and runs this image as a
-                    //separate container. The pytest container becomes the agent that Jenkins uses to run the Test
-                    //stage of your Pipeline project.
-                    image 'qnib/pytest'
-                }
-            }
             steps {
                 //This sh step executes pytest’s py.test command on sources/test_calc.py, which runs a set of
                 //unit tests (defined in test_calc.py) on the "calc" library’s add2 function.
