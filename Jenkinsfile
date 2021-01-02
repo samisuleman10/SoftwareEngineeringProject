@@ -51,7 +51,7 @@ pipeline {
                     agent any
                     //This environment block defines two variables which will be used later in the 'Deliver' stage.
                     environment {
-                        VOLUME = '$(pwd)/Source:/source'
+                        VOLUME = '$(pwd)/Source:/src'
                         IMAGE = 'cdrx/pyinstaller-linux:python2'
                     }
                     steps {
