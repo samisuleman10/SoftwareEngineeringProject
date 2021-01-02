@@ -1,6 +1,7 @@
 import random
 from collections import defaultdict
 import re
+from os.path import dirname, join
 
 HANGMAN = [
     '________',
@@ -11,6 +12,8 @@ HANGMAN = [
     '|       |',
     '|      / \ '
 ]
+
+project_root = dirname(dirname(__file__))
 
 
 class GameBoard:
@@ -74,11 +77,11 @@ class WordManagement:
         self.category = word_category
         file_path = ""
         if word_category == "1":
-            file_path = "../../Database/countries_cities.txt"
+            file_path = join(project_root, 'Database/countries_cities.txt')
         elif word_category == "2":
-            file_path = "../../Database/fruits_vegetables.txt"
+            file_path = join(project_root, 'Database/fruits_vegetables.txt')
         else:
-            file_path = "../../Database/animals.txt"
+            file_path = join(project_root, 'Database/animals.txt')
 
         words = self.import_word_list(file_path)
         self.secret_word = self.get_random_word(words).lower()
@@ -245,7 +248,7 @@ class ScoreManagement:
 
     def __init__(self):
         self.total_score = 100
-        self.file_path = "../Database/scores.txt"
+        self.file_path = join(project_root, 'Database/scores.txt')
 
     def updating_scores(self, user_name, wrong_guess):
 
