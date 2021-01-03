@@ -1,0 +1,206 @@
+Started by user shifa masood
+Obtained Jenkinsfile from git https://github.com/shifamasood/SoftwareEngineeringProject.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Pipeline-word-guessing-game
+[Pipeline] {
+[Pipeline] checkout
+The recommended git tool is: git
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/shifamasood/SoftwareEngineeringProject.git # timeout=10
+Fetching upstream changes from https://github.com/shifamasood/SoftwareEngineeringProject.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --tags --force --progress -- https://github.com/shifamasood/SoftwareEngineeringProject.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 938681be334b97a6799bb1739ad5ad18d215ff24 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 938681be334b97a6799bb1739ad5ad18d215ff24 # timeout=10
+Commit message: "edited jenkins file."
+ > git rev-list --no-walk 938681be334b97a6799bb1739ad5ad18d215ff24 # timeout=10
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ docker inspect -f . python:2-alpine
+.
+[Pipeline] withDockerContainer
+Jenkins does not seem to be running inside a container
+$ docker run -t -d -u 126:133 -w /var/lib/jenkins/workspace/Pipeline-word-guessing-game -v /var/lib/jenkins/workspace/Pipeline-word-guessing-game:/var/lib/jenkins/workspace/Pipeline-word-guessing-game:rw,z -v /var/lib/jenkins/workspace/Pipeline-word-guessing-game@tmp:/var/lib/jenkins/workspace/Pipeline-word-guessing-game@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** python:2-alpine cat
+$ docker top 94e2cc9401ce73ae9d0fb1b2bd8b9ea7a4d868fe4c9b143a7e356c6ebeedbc53 -eo pid,comm
+[Pipeline] {
+[Pipeline] sh
++ python -m py_compile source/main.py
+[Pipeline] stash
+Stashed 3 file(s)
+[Pipeline] }
+$ docker stop --time=1 94e2cc9401ce73ae9d0fb1b2bd8b9ea7a4d868fe4c9b143a7e356c6ebeedbc53
+$ docker rm -f 94e2cc9401ce73ae9d0fb1b2bd8b9ea7a4d868fe4c9b143a7e356c6ebeedbc53
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Pipeline-word-guessing-game
+[Pipeline] {
+[Pipeline] checkout
+The recommended git tool is: git
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/shifamasood/SoftwareEngineeringProject.git # timeout=10
+Fetching upstream changes from https://github.com/shifamasood/SoftwareEngineeringProject.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --tags --force --progress -- https://github.com/shifamasood/SoftwareEngineeringProject.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 938681be334b97a6799bb1739ad5ad18d215ff24 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 938681be334b97a6799bb1739ad5ad18d215ff24 # timeout=10
+Commit message: "edited jenkins file."
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ docker inspect -f . qnib/pytest
+.
+[Pipeline] withDockerContainer
+Jenkins does not seem to be running inside a container
+$ docker run -t -d -u 126:133 -w /var/lib/jenkins/workspace/Pipeline-word-guessing-game -v /var/lib/jenkins/workspace/Pipeline-word-guessing-game:/var/lib/jenkins/workspace/Pipeline-word-guessing-game:rw,z -v /var/lib/jenkins/workspace/Pipeline-word-guessing-game@tmp:/var/lib/jenkins/workspace/Pipeline-word-guessing-game@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** qnib/pytest cat
+$ docker top 21c020743432468bd0aa40c2853e69d7bacacdd4232f872469ad59d1d4a5376d -eo pid,comm
+[Pipeline] {
+[Pipeline] sh
++ py.test --verbose --junit-xml test-reports/results.xml source/test_main.py
+============================= test session starts ==============================
+platform linux2 -- Python 2.7.14, pytest-3.5.0, py-1.5.3, pluggy-0.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /var/lib/jenkins/workspace/Pipeline-word-guessing-game, inifile:
+plugins: cov-2.5.1
+collecting ... collected 7 items
+
+source/test_main.py::TestGameEngine::test_is_invalid_letter_is_numeric PASSED [ 14%]
+source/test_main.py::TestGameEngine::test_is_invalid_letter_is_special PASSED [ 28%]
+source/test_main.py::TestGameEngine::test_is_invalid_letters PASSED      [ 42%]
+source/test_main.py::TestGameEngine::test_is_valid_letter PASSED         [ 57%]
+source/test_main.py::TestGameEngine::test_is_valid_letter_capital PASSED [ 71%]
+source/test_main.py::TestGameEngine::test_play_right_guess PASSED        [ 85%]
+source/test_main.py::TestGameEngine::test_play_wrong_guess PASSED        [100%]
+
+ generated xml file: /var/lib/jenkins/workspace/Pipeline-word-guessing-game/test-reports/results.xml 
+=========================== 7 passed in 0.04 seconds ===========================
+Post stage
+[Pipeline] junit
+Recording test results
+[Checks API] No suitable checks publisher found.
+[Pipeline] }
+$ docker stop --time=1 21c020743432468bd0aa40c2853e69d7bacacdd4232f872469ad59d1d4a5376d
+$ docker rm -f 21c020743432468bd0aa40c2853e69d7bacacdd4232f872469ad59d1d4a5376d
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deliver)
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Pipeline-word-guessing-game
+[Pipeline] {
+[Pipeline] checkout
+The recommended git tool is: git
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/shifamasood/SoftwareEngineeringProject.git # timeout=10
+Fetching upstream changes from https://github.com/shifamasood/SoftwareEngineeringProject.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --tags --force --progress -- https://github.com/shifamasood/SoftwareEngineeringProject.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 938681be334b97a6799bb1739ad5ad18d215ff24 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 938681be334b97a6799bb1739ad5ad18d215ff24 # timeout=10
+Commit message: "edited jenkins file."
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] dir
+Running in /var/lib/jenkins/workspace/Pipeline-word-guessing-game/19
+[Pipeline] {
+[Pipeline] unstash
+[Pipeline] sh
++ pwd
++ docker run --rm -v /var/lib/jenkins/workspace/Pipeline-word-guessing-game/19/source:/src cdrx/pyinstaller-linux:python2 pyinstaller -F main.py
+bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+bash: no job control in this shell
+pyinstaller -F main.py
+47 INFO: PyInstaller: 3.6
+47 INFO: Python: 2.7.17
+48 INFO: Platform: Linux-5.4.0-58-generic-x86_64-with-debian-wheezy-sid
+48 INFO: wrote /src/main.spec
+53 INFO: UPX is available.
+56 INFO: Extending PYTHONPATH with paths
+['/src', '/src']
+57 INFO: checking Analysis
+57 INFO: Building Analysis because Analysis-00.toc is non existent
+57 INFO: Initializing module dependency graph...
+59 INFO: Caching module graph hooks...
+67 INFO: Caching module dependency graph...
+98 INFO: running Analysis Analysis-00.toc
+126 INFO: Analyzing /src/main.py
+2586 INFO: Processing module hooks...
+2587 INFO: Loading module hook "hook-encodings.py"...
+3452 INFO: Looking for ctypes DLLs
+3453 INFO: Analyzing run-time hooks ...
+3461 INFO: Looking for dynamic libraries
+4087 INFO: Looking for eggs
+4087 INFO: Using Python library /root/.pyenv/versions/2.7.17/lib/libpython2.7.so.1.0
+4093 INFO: Warnings written to /src/build/main/warn-main.txt
+4116 INFO: Graph cross-reference written to /src/build/main/xref-main.html
+4194 INFO: checking PYZ
+4195 INFO: Building PYZ because PYZ-00.toc is non existent
+4195 INFO: Building PYZ (ZlibArchive) /src/build/main/PYZ-00.pyz
+4425 INFO: Building PYZ (ZlibArchive) /src/build/main/PYZ-00.pyz completed successfully.
+4484 INFO: checking PKG
+4485 INFO: Building PKG because PKG-00.toc is non existent
+4485 INFO: Building PKG (CArchive) PKG-00.pkg
+9273 INFO: Building PKG (CArchive) PKG-00.pkg completed successfully.
+9296 INFO: Bootloader /root/.pyenv/versions/2.7.17/lib/python2.7/site-packages/PyInstaller/bootloader/Linux-64bit/run
+9296 INFO: checking EXE
+9296 INFO: Building EXE because EXE-00.toc is non existent
+9297 INFO: Building EXE from EXE-00.toc
+9297 INFO: Appending archive to ELF section in EXE /src/dist/main
+9332 INFO: Building EXE from EXE-00.toc completed successfully.
+[Pipeline] }
+[Pipeline] // dir
+Post stage
+[Pipeline] archiveArtifacts
+Archiving artifacts
+[Pipeline] sh
++ pwd
++ docker run --rm -v /var/lib/jenkins/workspace/Pipeline-word-guessing-game/source:/src cdrx/pyinstaller-linux:python2 rm -rf build dist
+bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+bash: no job control in this shell
+rm -rf build dist
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] End of Pipeline
+Finished: SUCCESS
