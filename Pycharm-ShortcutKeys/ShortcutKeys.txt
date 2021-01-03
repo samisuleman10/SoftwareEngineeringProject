@@ -1,0 +1,13 @@
+PyCharm ide - Shortcut Keys
+
+1-Double Shift	
+  -Search Everywhere
+  -Find anything related to PyCharm or your project and open it, execute it, or jump to it.
+
+2-F2/Shift+F2
+  -Navigate between code issues
+  -Jump to the next or previous highlighted error.
+
+3-Ctrl+/Ctrl+Shift+/	
+  -Add/remove line or block comment
+  -Comment out a line or block of code.
