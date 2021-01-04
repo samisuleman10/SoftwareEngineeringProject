@@ -23,3 +23,6 @@ shifa 30
 sf 30 
 2 30 
 111 30 
+samii 30 
+samii 30 
+shif 30 

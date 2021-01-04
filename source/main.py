@@ -251,9 +251,10 @@ class ScoreManagement:
         self.file_path = join(project_root, 'Database/scores.txt')
 
     def updating_scores(self, user_name, wrong_guess):
-
+        x = lambda wrong, score: score - (10*wrong)
         if wrong_guess != 0:
-            self.total_score = self.total_score - (10 * wrong_guess)
+            self.total_score = x(wrong_guess, self.total_score)
+
         text_file = open(self.file_path, "a")
         text_file.write("\n{0}".format(user_name))
         text_file.write(" {0} ".format(str(self.total_score)))
