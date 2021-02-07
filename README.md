@@ -12,7 +12,7 @@
 
 5- Build Management -> SoftwareEngineeringProject/BuildFile
 
-6- Unit Tests -> SoftwareEngineeringProject/JenkinsPipeline/test_passed.png
+6- Unit Tests -> SoftwareEngineeringProject/Source/test_main.py
 
 7- Continuous Delivery Pipeline -> SoftwareEngineeringProject/JenkinsPipeline
 
